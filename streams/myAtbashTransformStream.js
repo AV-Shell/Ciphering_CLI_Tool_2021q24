@@ -1,7 +1,7 @@
 const AtbashCipheringMachine = require("../utils/atbashCipher");
 const { Transform } = require("stream");
 
-class myAtbashTransform extends Transform {
+class MyAtbashTransform extends Transform {
   constructor() {
     super();
     this.AtbashMachine = new AtbashCipheringMachine();
@@ -16,4 +16,4 @@ class myAtbashTransform extends Transform {
   }
 }
 
-module.exports = myAtbashTransform;
+module.exports = MyAtbashTransform;

@@ -8,9 +8,12 @@ const {
 const ArgsValidator = require("./utils/argsValidator");
 const { configValidatorParser } = require("./utils/configValidatorParser");
 const { pipeline } = require("stream");
-const myCaesarTransform = require("./streams/myCaesarTransformStream");
-const myROT8Transform = require("./streams/myROT8TransformStream");
-const myAtbashTransform = require("./streams/myAtbashTransformStream");
+const MyCaesarTransform = require("./streams/myCaesarTransformStream");
+const MyROT8Transform = require("./streams/myROT8TransformStream");
+const MyAtbashTransform = require("./streams/myAtbashTransformStream");
+const MyReadable = require("./streams/myReadableStream");
+const MyWritable = require("./streams/myWritableStream");
+
 const DEBUG_LOG_ENABLE = false;
 
 process.on("uncaughtException", uncaughtExceptionHandler);
@@ -51,7 +54,8 @@ try {
       fs.accessSync(inputFile, fs.constants.F_OK | fs.constants.R_OK);
       if (DEBUG_LOG_ENABLE)
         console.log(`${inputFile} exists, and it is readable`);
-      inputStream = fs.createReadStream(inputFile);
+      // inputStream = fs.createReadStream(inputFile);
+      inputStream = new MyReadable(inputFile);
     } catch (err) {
       throw new CustomError(
         `${inputFile} ${
@@ -68,7 +72,8 @@ try {
       fs.accessSync(outputFile, fs.constants.F_OK | fs.constants.W_OK);
       if (DEBUG_LOG_ENABLE)
         console.log(`${outputFile} exists, and it is readable`);
-      outputStream = fs.createWriteStream(outputFile, { flags: "a" });
+      // outputStream = fs.createWriteStream(outputFile, { flags: "a" });
+      outputStream = new MyWritable(outputFile);
     } catch (err) {
       throw new CustomError(
         `${outputFile} ${
@@ -83,11 +88,11 @@ try {
   const streamsArray = streamTypes.map((el) => {
     switch (el.type) {
       case "C":
-        return new myCaesarTransform(el.action);
+        return new MyCaesarTransform(el.action);
       case "R":
-        return new myROT8Transform(el.action);
+        return new MyROT8Transform(el.action);
       case "A":
-        return new myAtbashTransform(el.action);
+        return new MyAtbashTransform(el.action);
       default:
         throw new CustomError("Switch case problem, unknown stream");
     }
@@ -99,8 +104,8 @@ try {
       throw new CustomError(
         `Problem with encription, ${
           err.code === "EISDIR"
-            ? "It is not a file. It is a Directory!!"
-            : "LOL"
+            ? "It is not a file. It is the Directory!!"
+            : err.message
         }`
       );
       process.exit(9);

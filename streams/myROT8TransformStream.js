@@ -1,7 +1,7 @@
 const CaesarCipheringMachine = require("../utils/caesarCipher");
 const { Transform } = require("stream");
 
-class myROT8Transform extends Transform {
+class MyROT8Transform extends Transform {
   constructor(action) {
     super();
     this.caesarMachine = new CaesarCipheringMachine(action, 8);
@@ -16,4 +16,4 @@ class myROT8Transform extends Transform {
   }
 }
 
-module.exports = myROT8Transform;
+module.exports = MyROT8Transform;
