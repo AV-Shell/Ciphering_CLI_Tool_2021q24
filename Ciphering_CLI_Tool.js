@@ -15,6 +15,7 @@ const MyReadable = require("./streams/myReadableStream");
 const MyWritable = require("./streams/myWritableStream");
 
 const DEBUG_LOG_ENABLE = false;
+//Task 2 tests
 
 process.on("uncaughtException", uncaughtExceptionHandler);
 process.on("unhandledRejection", unhandledRejectionHandler);
