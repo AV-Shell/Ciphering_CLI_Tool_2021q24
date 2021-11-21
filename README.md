@@ -21,7 +21,7 @@ git clone https://github.com/AV-Shell/Ciphering_CLI_Tool_2021q24.git
 
 ## Change active branch:
 ```bash
-git checkout dev
+git checkout task2-tests
 ```
 
 ## Running application
@@ -86,3 +86,15 @@ $ node Ciphering_CLI_Tool -c "C1-R1-C0-C0-A-R0-R1-R1-A-C1" -i "./input.txt" -o "
 
 > output.txt
 > `This is secret. Message about "_" symbol!`
+
+## Before run test
+
+### Install node modules
+```
+npm install
+```
+
+## Run Test:
+```bash
+npm run test
+```
