@@ -1,0 +1,26 @@
+{
+  "name": "ciphering_cli_tool_2021q4",
+  "version": "1.0.0",
+  "description": "## Task 1  nodejs_2021_q4",
+  "main": "Ciphering_CLI_Tool.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AV-Shell/Ciphering_CLI_Tool_2021q24.git"
+  },
+  "keywords": [
+    "node",
+    "education"
+  ],
+  "author": "av-shell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AV-Shell/Ciphering_CLI_Tool_2021q24/issues"
+  },
+  "homepage": "https://github.com/AV-Shell/Ciphering_CLI_Tool_2021q24#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
